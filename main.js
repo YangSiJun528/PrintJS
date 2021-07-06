@@ -56,12 +56,14 @@ function plusThickness() { //그림 두께 늘리기
   if (ctx.lineWidth < 15) {
     ctx.lineWidth += 1.5;
   }
+  resizeThickness();
 }
 
 function minusThickness() { //그림 두께 줄이기
   if (ctx.lineWidth > 3) {
     ctx.lineWidth -= 1.5;
   }
+  resizeThickness();
 }
 
 function handleModeClick() { //모드 클릭 했을때 아이콘 바꾸는 함수
@@ -92,6 +94,7 @@ function handleSaveClick() {
   link.click();
 }
 
+// 추가 기능 : 컨버스 사이즈 번경
 function resizeCanvas()  {
   let canvas_X = document.getElementById('canvas_X').value;
   let canvas_Y = document.getElementById('canvas_Y').value;
@@ -106,6 +109,12 @@ function resizeCanvas()  {
     canvas.style.width = `${canvas_X}px`;
     canvas.style.height = `${canvas_Y}px`;
   }
+}
+
+// 추가 기능 : 선 두께 알려주기
+function resizeThickness() {
+  let Thickness = document.getElementById('jsThickness');
+  Thickness.innerText = `Thickness : ${ctx.lineWidth}`;
 }
 
 if (canvas) {
