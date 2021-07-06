@@ -10,7 +10,7 @@ let canvas_X = document.getElementById('canvas_X');
 
 const INITIAL_COLOR = "#2c2c2c"; //초기 색
 
-//처음 나오는 검은색이랑 선 굵기가 선언된 것과 다르게 나와서 onload씀 
+//처음 나오는 검은색이랑 선 굵기가 선언된 것과 다르게 나와서 onload써서 해결 함
 
 let canvas_width_size = 800;
 let canvas_height_size = 800;
@@ -29,47 +29,51 @@ function startPainting() {
   painting = true;
 }
 
-function onMouseMove(event) {  //마우스가 움직일 떄 실행되는 콜백 함수
+//마우스가 움직일 떄 실행되는 콜백 함수
+function onMouseMove(event) { 
   const x = event.offsetX; // 이벤트가 일어나는 좌표
   const y = event.offsetY;
-  if (!painting) { //그리고 있는 중이 아니면
-    ctx.beginPath(); //그리기 시작
-    ctx.moveTo(x, y); //x,y 좌표로 이동
+  if (!painting) {
+    ctx.beginPath(); 
+    ctx.moveTo(x, y); 
   } else {
-    ctx.lineTo(x, y); //x,y 좌표로 이동
-    ctx.stroke(); //그리기
+    ctx.lineTo(x, y); 
+    ctx.stroke();
   }
 }
 
-function handleColorClick(event) { //색상 클릭했을 때 실행되는 콜백 함수
+//색상 클릭했을 때 실행되는 콜백 함수
+function handleColorClick(event) { 
   let colors = document.querySelectorAll('.jsColor');
-  const color = event.target.style.backgroundColor; // 클릭된 div 배경 값 가져오기
+  const color = event.target.style.backgroundColor;
   colors.forEach((color) => {
     color.classList.remove('active');
     color.classList.add('inactive');
 });
   event.target.classList.remove('inactive');
   event.target.classList.add('active');
-  ctx.strokeStyle = color;  //그리기 색상 지정
+  ctx.strokeStyle = color;
   console.log(color);
-  ctx.fillStyle = ctx.strokeStyle; //채우기
+  ctx.fillStyle = ctx.strokeStyle;
 }
-
-function plusThickness() { //그림 두께 늘리기
+//선 굵기 증가
+function plusThickness() { 
   if (ctx.lineWidth < 15) {
     ctx.lineWidth += 1;
   }
   resizeThickness();
 }
 
-function minusThickness() { //그림 두께 줄이기
+//선 굵기 증가
+function minusThickness() { 
   if (ctx.lineWidth > 1) {
     ctx.lineWidth -= 1;
   }
   resizeThickness();
 }
 
-function handleModeClick() { //모드 클릭 했을때 아이콘 바꾸는 함수
+//모드 클릭 했을때 아이콘 바꾸는 함수
+function handleModeClick() { 
   if (filling === true) {
     filling = false;
     mode.innerHTML = '<i class="fas fa-paint-brush"></i>';
@@ -79,13 +83,15 @@ function handleModeClick() { //모드 클릭 했을때 아이콘 바꾸는 함�
   }
 }
 
-function handleCanvasClick() { //채우기
+//채우기
+function handleCanvasClick() { 
   if (filling) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 }
 
-function handleCM(event) {
+//오른쪽 클릭 안되게 하는 함수
+function handleCM(event) { 
   event.preventDefault();
 }
 
