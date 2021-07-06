@@ -10,6 +10,7 @@ body {
 /** 컨트롤 메뉴 스타일 **/
 .controls {
   display: flex;
+  margin-bottom: 64px;
 }
 .controls_part {
   margin-left: 32px;
@@ -32,5 +33,16 @@ body {
 /** 저장&모드 버튼 스타일 **/
 /** 두께 버튼 스타일 **/
 #jsThickness {
+  font-size: 16px;
+}
+/** 컨버스 크기 폼 스타일 **/
+.controls__canvas {
   font-size: 18px;
+}
+/** 컨버스 스타일**/
+#jsCanvas {
+  width: 800px;
+  height: 800px;
+  background-color: white;
+  border-radius: 1rem;
 }

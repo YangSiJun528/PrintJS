@@ -28,8 +28,14 @@
     <div class="controls__thickness controls_part">
         <button id="jsPlus" class="btn">+</button>
         <button id="jsMinus" class="btn">-</button>
-        <span id="jsThickness" class="innerTEXT 써서 폰트 크기 넣기">Font size : 16px</span>
+        <p id="jsThickness" class="innerTEXT 써서 폰트 크기 넣기">Thickness : 3</p>
     </div>
+    <form action="" class="controls_part controls__canvas">
+      <p>Canvas size</p>
+      <span>X</span><input placeholder="숫자 입력" autocomplete="off" name="canvas_X" id="canvas_X">
+      <span>Y</span><input placeholder="숫자 입력" autocomplete="off" name="canvas_Y" id="canvas_Y">
+      <input type="button" id='canvas_XY_btn' value="확인">
+    </form>
   </div>
     <canvas id="jsCanvas"></canvas>
     <script src="main.js"></script>
