@@ -10,14 +10,10 @@ let canvas_X = document.getElementById('canvas_X');
 
 const INITIAL_COLOR = "#2c2c2c"; //초기 색
 
+//처음 나오는 검은색이랑 선 굵기가 선언된 것과 다르게 나와서 onload씀 
+
 let canvas_width_size = 800;
 let canvas_height_size = 800;
-
-ctx.fillStyle = "white";  //채우기 색상
-ctx.fillRect(0, 0, canvas.width, canvas.height); //색이 있는 사각형을 그림
-ctx.strokeStyle = INITIAL_COLOR; //그리기 색
-ctx.fillStyle = INITIAL_COLOR; //채우기 색
-ctx.lineWidth = 3; //줄 두께
 
 canvas.width = 800;
 canvas.height = 800;
@@ -46,22 +42,29 @@ function onMouseMove(event) {  //마우스가 움직일 떄 실행되는 콜백 
 }
 
 function handleColorClick(event) { //색상 클릭했을 때 실행되는 콜백 함수
+  let colors = document.querySelectorAll('.jsColor');
   const color = event.target.style.backgroundColor; // 클릭된 div 배경 값 가져오기
+  colors.forEach((color) => {
+    color.classList.remove('active');
+    color.classList.add('inactive');
+});
+  event.target.classList.remove('inactive');
+  event.target.classList.add('active');
   ctx.strokeStyle = color;  //그리기 색상 지정
   console.log(color);
-  ctx.fillStyle = ctx.color; //채우기
+  ctx.fillStyle = ctx.strokeStyle; //채우기
 }
 
 function plusThickness() { //그림 두께 늘리기
   if (ctx.lineWidth < 15) {
-    ctx.lineWidth += 1.5;
+    ctx.lineWidth += 1;
   }
   resizeThickness();
 }
 
 function minusThickness() { //그림 두께 줄이기
-  if (ctx.lineWidth > 3) {
-    ctx.lineWidth -= 1.5;
+  if (ctx.lineWidth > 1) {
+    ctx.lineWidth -= 1;
   }
   resizeThickness();
 }
@@ -116,6 +119,15 @@ function resizeThickness() {
   let Thickness = document.getElementById('jsThickness');
   Thickness.innerText = `Thickness : ${ctx.lineWidth}`;
 }
+
+window.onload = function(){
+  let Thickness = document.getElementById('jsThickness');
+  Thickness.innerText = `Thickness : ${ctx.lineWidth}`;
+  ctx.fillStyle = "white";  //
+  ctx.fillRect(0, 0, canvas.width, canvas.height); //배경색 하얀색으로
+  ctx.strokeStyle = INITIAL_COLOR; //그리기 색
+  ctx.fillStyle = INITIAL_COLOR; //채우기 색
+  }
 
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
