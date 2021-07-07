@@ -29,7 +29,7 @@ body {
 }
 /** 색상 버튼 스타일 **/
 .controls__color + .controls__color {
-  margin-left: 16px;
+  margin-left: 4px;
 }
 /** 저장&모드 버튼 스타일 **/
 /** 두께 버튼 스타일 **/

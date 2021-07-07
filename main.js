@@ -6,6 +6,7 @@ const minus = document.getElementById("jsMinus");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
 const canvas_XY_btn = document.getElementById("canvas_XY_btn");
+const clearBtn = document.getElementById("Jsclean");
 let canvas_X = document.getElementById('canvas_X');
 
 const INITIAL_COLOR = "#2c2c2c"; //초기 색
@@ -53,7 +54,6 @@ function handleColorClick(event) {
   event.target.classList.remove('inactive');
   event.target.classList.add('active');
   ctx.strokeStyle = color;
-  console.log(color);
   ctx.fillStyle = ctx.strokeStyle;
 }
 //선 굵기 증가
@@ -96,11 +96,11 @@ function handleCM(event) {
 }
 
 function handleSaveClick() {
-  const image = canvas.toDataURL();
-  const link = document.createElement("a");
-  link.href = image;
-  link.download = "PaintJS";
-  link.click();
+  const image = canvas.toDataURL(); //컨버스를 URL로 전환
+  const link = document.createElement("a"); //a태그 만들고 
+  link.href = image; //a태그 주소
+  link.download = "PaintJS"; //다운로드 될 떄 이름
+  link.click(); //a태그 클릭  
 }
 
 // 추가 기능 : 컨버스 사이즈 번경
@@ -118,6 +118,12 @@ function resizeCanvas()  {
     canvas.style.width = `${canvas_X}px`;
     canvas.style.height = `${canvas_Y}px`;
   }
+}
+
+// 추가 기능 : 전부 지우기
+function allclear() {
+  ctx.fillStyle = "white"; 
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 // 추가 기능 : 선 두께 알려주기
@@ -165,4 +171,7 @@ if (saveBtn) {
 }
 if (canvas_XY_btn) {
   canvas_XY_btn.addEventListener("click", resizeCanvas);
+}
+if (clearBtn) {
+  clearBtn.addEventListener("click", allclear);
 }
